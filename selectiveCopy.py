@@ -13,10 +13,17 @@ def selectiveCopy(folder):
 
      # Choose what files will be copied (txt, jpg)
      print("Choose which files to be copied. ", end = "")
-     fileExtension = pyip.inputChoice([".txt", ".jpeg"])
+     fileExtension = pyip.inputChoice([".txt", ".jpeg", ".pdf", ".jpg"])
+
+     # Figure out what filename this folder should use based on what folder name exists
+     number = 1
+     while True:
+          newFolder = os.path.basename(folder) + "_copy_" + str(number)
+          if not os.path.exists(newFolder):
+               break
+          number += 1
 
      # Create the new folder name
-     newFolder = "new_" + os.path.basename(folder)
      print(f"Creating {newFolder}...")
      os.mkdir(newFolder)
      time.sleep(1)
